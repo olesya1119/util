@@ -17,6 +17,7 @@ public class FileServiceImpl implements FileService {
             reader = new FileReader(fileName);
             int c, k = 0;
             while((c=reader.read())!=-1){
+                if (c == 13) continue;
                 if (!String.valueOf((char) c).matches(".")){ //Если символ -  перевод строки
                     k++;
                     arrayList.add("");
