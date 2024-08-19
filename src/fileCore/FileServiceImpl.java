@@ -1,6 +1,7 @@
 package fileCore;
 
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 public class FileServiceImpl implements FileService {
@@ -10,24 +11,21 @@ public class FileServiceImpl implements FileService {
     public ArrayList<String> readLinesFromFile(String fileName) {
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("");
-        byte[] buf;
+        FileReader reader;
 
         try {
-            FileInputStream fin = new FileInputStream(fileName);
-            buf = fin.readAllBytes();
-            fin.close();
+            reader = new FileReader(fileName);
+            int c, k = 0;
+            while((c=reader.read())!=-1){
+                if (!String.valueOf((char) c).matches(".")){ //Если символ -  перевод строки
+                    k++;
+                    arrayList.add("");
+                    continue;
+                }
+                arrayList.set(k, arrayList.get(k) + (char) c);
+            }
         } catch (IOException e ) {
             throw new RuntimeException("Файл по пути " + System.getProperty("user.dir") + "\\" + fileName + " не найден.");
-        }
-
-        for (int i = 0, k = 0; i < buf.length; i ++){
-            if (!String.valueOf((char) buf[i]).matches(".")){ //Если сивол -  перевод строки
-                k++;
-                i++;
-                arrayList.add("");
-                continue;
-            }
-            arrayList.set(k, arrayList.get(k) + (char)buf[i]); //Иначе добавляем считанный символ к строке
         }
         return arrayList;
     }
