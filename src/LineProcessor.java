@@ -85,7 +85,7 @@ public class LineProcessor {
 
     private Type getType(String value){
         try {
-            Integer.parseInt(value);
+            Long.parseLong(value);
             return Type.Int;
         }
         catch (NumberFormatException _){}

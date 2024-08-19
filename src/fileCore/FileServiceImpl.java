@@ -44,7 +44,8 @@ public class FileServiceImpl implements FileService {
             fos.write(data.toString().getBytes());
             fos.close();
         } catch (IOException e) {
-            throw new RuntimeException("Директория " + System.getProperty("user.dir") + path + " не найдена.");
+            System.out.print(e.getMessage());
+            throw new RuntimeException("Директория " + path + " не найдена.");
         }
     }
 }

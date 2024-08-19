@@ -3,11 +3,11 @@ package statistics;
 import java.util.ArrayList;
 
 public class IntegerStatistics implements Statistics {
-    private int min, max, sum, count;
+    private long min, max, sum, count;
 
     @Override
     public void addValue(String value) {
-        int intValue = Integer.parseInt(value);
+        long intValue = Long.parseLong(value);
         if (count == 0){
             min = intValue;
             max = intValue;

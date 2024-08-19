@@ -74,7 +74,10 @@ public class Config {
     }
 
     public void setPath(String path) {
-        this.path = path;
+        this.path = path.replace('/', '\\');
+        if (this.path.startsWith("\\")) this.path = System.getProperty("user.dir") + this.path;
+        this.path += "\\";
+
     }
 
     public void setOptionP(boolean optionP) {

@@ -32,7 +32,7 @@ public class Parser {
                     i++;
                     break;
                 case "-p":
-                    config .setOptionF(true);
+                    config .setOptionP(true);
                     config .setPrefix(args[i+1]);
                     i++;
                     break;
